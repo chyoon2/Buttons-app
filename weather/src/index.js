@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import SeasonDisplay from "./SeasonsDisplay";
-
+import Spinner from "./Spinner";
 // const App = () => {
 
 //   return <div>Latitude: </div>;
@@ -43,7 +43,12 @@ class App extends React.Component {
     if (!this.state.errorMessage && this.state.lat) {
       return <SeasonDisplay lat={this.state.lat} />;
     }
-    return <div> Loading!</div>;
+    return (
+      <div>
+        {" "}
+        <Spinner message='Please accept loading request' />!
+      </div>
+    );
   }
 }
 ReactDOM.render(<App />, document.querySelector("#root"));
