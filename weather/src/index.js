@@ -10,15 +10,11 @@ import Spinner from "./Spinner";
 //};
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  state = { lat: null, errorMessage: "" };
 
-    this.state = { lat: null, errorMessage: "" };
+  //constructor function we can define. in a js class it is the first function to be called anytime an instance of the class is
 
-    //constructor function we can define. in a js class it is the first function to be called anytime an instance of the class is
-  }
-
-  state = { lat: null, errorMessage: "" }; //alternate state init
+  // state = { lat: null, errorMessage: "" }; //alternate state init
 
   componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
@@ -29,9 +25,8 @@ class App extends React.Component {
   componentDidUpdate() {
     console.log("my comp updated");
   }
-  render() {
-    // always need a render. must have render method in components.
 
+  renderContent() {
     // <div>
     //   Latitude: {this.state.lat}
     //   <br />
@@ -49,6 +44,10 @@ class App extends React.Component {
         <Spinner message='Please accept loading request' />!
       </div>
     );
+  }
+  render() {
+    // always need a render. must have render method in components.
+    return <div className='border red'>{this.renderContent()}</div>;
   }
 }
 ReactDOM.render(<App />, document.querySelector("#root"));
