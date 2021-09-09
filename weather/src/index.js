@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import SeasonDisplay from "./SeasonsDisplay";
 
 // const App = () => {
 
@@ -14,15 +15,19 @@ class App extends React.Component {
 
     this.state = { lat: null, errorMessage: "" };
 
-    window.navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({ lat: position.coords.latitude });
-      },
-      (err) => {
-        this.setState({ errorMessage: err.message });
-      }
-    );
     //constructor function we can define. in a js class it is the first function to be called anytime an instance of the class is
+  }
+
+  state = { lat: null, errorMessage: "" }; //alternate state init
+
+  componentDidMount() {
+    window.navigator.geolocation.getCurrentPosition(
+      (position) => this.setState({ lat: position.coords.latitude }),
+      (err) => this.setState({ errorMessage: err.message })
+    );
+  }
+  componentDidUpdate() {
+    console.log("my comp updated");
   }
   render() {
     // always need a render. must have render method in components.
@@ -36,7 +41,7 @@ class App extends React.Component {
       return <div>Error: {this.state.errorMessage}</div>;
     }
     if (!this.state.errorMessage && this.state.lat) {
-      return <div>Latitude: {this.state.lat} </div>;
+      return <SeasonDisplay lat={this.state.lat} />;
     }
     return <div> Loading!</div>;
   }
