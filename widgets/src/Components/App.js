@@ -1,5 +1,6 @@
 import React from "react";
 import Accordion from "./Accordion";
+import Search from "./Search";
 
 const items = [
   { title: "what is React", content: "react is a front end js framework" },
@@ -10,7 +11,10 @@ const items = [
 export default () => {
   return (
     <div>
-      <Accordion items={items}></Accordion>
+      <Search></Search>
     </div>
   );
 };
+{
+  /* <Accordion items={items}></Accordion> */
+}
